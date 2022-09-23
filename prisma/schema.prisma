@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -18,4 +15,13 @@ model Task {
   updated_at DateTime @default(now())
 
   @@map("tasks")
+}
+
+model User {
+  id       String @id @default(uuid())
+  username String @unique
+  pass     String
+  email    String @unique
+
+  @@map("users")
 }
