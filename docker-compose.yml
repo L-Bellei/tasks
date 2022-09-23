@@ -1,0 +1,24 @@
+version: '3.9'
+services:
+  tasks:
+    build: .
+    ports:
+      - 3030
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    hostname: db
+    volumes:
+      - ./data_pg:/var/lib/postgresql/data
+    restart: unless-stopped
+    ports:
+      - 5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1523
+      - POSTGRES_DB=db-tasks
+
+volumes:
+  data_pg:
